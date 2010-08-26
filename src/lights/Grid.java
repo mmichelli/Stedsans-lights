@@ -2,6 +2,9 @@ package lights;
 
 import java.util.ArrayList;
 
+import affects.Affect;
+import affects.AffectFactory;
+
 import processing.core.PApplet;
 
 public class Grid {
@@ -10,7 +13,7 @@ public class Grid {
 	ArrayList<Light> lights;
 	private int[][] ids;
 
-	int blockSize = 40; 
+	int blockSize = 30; 
 	int gap  = 0;
 	int gridGap = 50;
 	int gridWidth  = 0;
@@ -25,44 +28,28 @@ public class Grid {
 		gridHeight  = _gridHeight; 
 		
 		loadGrid(); 
-		makeAffect(name); 
+		affect = AffectFactory.makeAffect(name, lights ,gridWidth,gridHeight); 
 		setupMidi() ;
 		 
 	}
 	
-	private void makeAffect(String name) {
-		
-		if(name ==  "NoiseAffect")
-		{
-			affect = new NoiseAffect(lights, gridWidth, gridHeight); 
-		}	
-		else if(name ==  "WindAffect")
-		{
-			affect = new WindAffect(lights, gridWidth, gridHeight); 
-		}
-		
-		else if(name ==  "SpringAffect")
-		{
-			affect = new SpringAffect(lights, gridWidth, gridHeight); 
-		}	
-		else
-		{
-			affect = new MouseAffect(lights, gridWidth, gridHeight);
-		}
-		
-	}
 	private void setupMidi() 
 	{
 		this.midiChannel 	= affect.getMidiChannel(); 
-		this.midiNumber 	= affect.getMidiNumber(); 
-		System.out.println("midiChannel:"+midiChannel+" midiNumber:"+midiNumber+" getWeight:"+affect.getWeight()); 
+		this.midiNumber 	= affect.getMidiNumber();  
 		BCF2000.sendControllerChange(midiChannel,midiNumber,(int)(affect.getWeight()*BCF2000.MAX) ); 
 		
 	}
 	
-	public void noteOn(int channel, int pitch, int velocity) {}
+	public void noteOn(int channel, int pitch, int velocity) {
+		affect.noteOn(channel, pitch, velocity);
+		
+	}
 
-	public void noteOff(int channel, int pitch, int velocity) {}
+	public void noteOff(int channel, int pitch, int velocity) {
+		affect.noteOff(channel, pitch, velocity);
+		
+	}
 
 	public void controllerChange(int channel, int number, int value) {
 		if(channel == midiChannel && number == midiNumber  )
@@ -70,6 +57,7 @@ public class Grid {
 			affect.setWeight((float)value/BCF2000.MAX);
 		}
 		
+		affect.controllerChange(channel, number, value);
 		
 	}
 	
@@ -124,6 +112,10 @@ public class Grid {
 			
 			l.draw(p, x, y , a); 
 		}
+		float tx = this.getWidth()/2 -(p.textWidth(affect.affectName)/2) - (gridGap/2);
+		
+		p.fill(100);
+		p.text(affect.affectName, tx + x, y + this.getHeight() - ( gridGap /2) );
 	}
 	
 	

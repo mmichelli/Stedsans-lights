@@ -93,8 +93,8 @@ public class GridsController {
 					average += g.getValueByIndex(index)*g.getWeight();
 					total += g.getWeight();
 				}	
-				
-				dmx.setValue((j < ids[i].length )? ids[i][j]: -1, average/Math.max(1, total),gamma );
+				//don't think we need to divide it by the average
+				dmx.setValue((j < ids[i].length )? ids[i][j]: -1, average/*/Math.max(1, total)*/,gamma );
 			}
 		}
 		

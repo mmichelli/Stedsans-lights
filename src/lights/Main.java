@@ -1,9 +1,8 @@
 package lights;
 
-
-
-
+import affects.AffectFactory;
 import processing.core.PApplet;
+import processing.core.PFont;
 
 
 /*
@@ -13,7 +12,7 @@ import processing.core.PApplet;
  *  
  *  GridsController	//Updates Grid 
  *  LightMixer < Class 	//Updates the lights
- *  
+ *  |
  */
 
 public class Main extends PApplet {
@@ -21,9 +20,10 @@ public class Main extends PApplet {
 	private static final long serialVersionUID = 5629084174219345456L;
 
 	private GridsController gc; 
+	PFont font;
 
 	
-	String[] nGrids = {"MouseAffect","NoiseAffect", "SpringAffect", "WindAffect"}; 
+	String[] nGrids = {AffectFactory.MOUSE,AffectFactory.NOISE,AffectFactory.SPRING,AffectFactory.WIND ,AffectFactory.SELECT}; 
 	
 	
 	  public static void main(String args[])
@@ -39,6 +39,11 @@ public class Main extends PApplet {
 		gc = new GridsController(DMX.DMX_IDS,nGrids,BCF2000.getInstance(this));
 		
 		
+		font = loadFont("Calibri-13.vlw"); 
+		textFont(font, 13); 
+		
+		
+		
 	}
 	
 	
@@ -47,8 +52,10 @@ public class Main extends PApplet {
 
 		background(0);
 		 
-		  gc.updateLights(this); 
-		  gc.draw(this, 50, 100);
+		gc.updateLights(this); 
+		gc.draw(this, 20, 20);
+		
+		
 		  
 	}
 	
@@ -86,13 +93,13 @@ public class Main extends PApplet {
 
 	public void controllerChange(int channel, int number, int value) {
 		// Receive a controllerChange
-		println();
+	/*	println();
 		println("Controller Change:");
 		println("--------");
 		println("Channel:"+channel);
 		println("Number:"+number);
 		println("Value:"+value);
-		
+		*/
 		gc.controllerChange( channel,  number,  value);
 	}
 
