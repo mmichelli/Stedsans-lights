@@ -5,7 +5,7 @@ h2. To install use:
 
 When both are installed. In eclipse import existing project into workspace. 
 
-Libraries. 
+h2. Libraries. 
 
 * "Processing":http://processing.org/
 * "Open USB":http://www.enttec.com/index.php?main_menu=Products&pn=70303&show=description&name=opendmxusb
