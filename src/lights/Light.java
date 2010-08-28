@@ -8,7 +8,7 @@ import processing.core.PApplet;
 	protected float value = 0; 
 	private double velocity = 0; 
 	public boolean fixed = false;
-	private double gamma = 1; 
+	private double gamma = 0.8; 
 	
 	/**
 	 * @return the gamma
