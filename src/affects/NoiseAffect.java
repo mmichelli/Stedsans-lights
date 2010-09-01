@@ -18,6 +18,9 @@ public class NoiseAffect extends Affect {
 		midiNumber 	= 9 ;
 		weight 		= 1 ;
 		affectName = "noise";
+		button[0] = 9; 
+		button[1] = 38;
+		resetButton(0);
 	}
 	
 	public void update ( PApplet p,int x, int y){

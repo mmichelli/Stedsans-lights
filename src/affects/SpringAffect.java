@@ -22,6 +22,9 @@ public class SpringAffect extends Affect {
 		midiChannel = 2 ;
 		midiNumber 	= 2 ;
 		weight 		= 0 ;
+		button[0] = 9; 
+		button[1] = 40; 
+		resetButton(0);
 		
 		affectName = "spring";
 	}

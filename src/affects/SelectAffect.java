@@ -9,12 +9,9 @@ import lights.Light;
 
 public class SelectAffect extends Affect {
 	
-	private int[][]ls = {{0,6, 0},
-						{1,91, 1},
-						{0,93, 2},
-						{0,94, 3}};
-	
-	private Light mouseDown ; 
+	private int[] control = {0,5, 0};
+
+	private Light light ; 
 
 	public SelectAffect(ArrayList<Light> lts, int w, int h) {
 		super(lts, w, h);
@@ -24,56 +21,40 @@ public class SelectAffect extends Affect {
 		midiNumber = 7 ;
 		weight = 0 ;
 		affectName = "midi";
+		button[0] = 9; 
+		button[1] = 43; 
+		resetButton(0);
 		
 	}
 	
 	public void update ( PApplet p,int x, int y)
 	{
-		mouseDown = null;
+		
 		for (Light l : lights) {
-			if(p.mousePressed && l.mouseOver(p, x,y))
+			if(p.mousePressed && l.mouseOver(p, x,y) && light != l )
 			{
-				mouseDown = l; 
+				light = l;
+				BCF2000.sendControllerChange(control[0],control[1],(int)(l.getValue()*BCF2000.MAX));
 			}
 
 		}
 		
 	};
 	private void initLights(){
-		
-		for (int[] l : ls) {
-			BCF2000.sendControllerChange(l[0],l[1],0 );
-			}
-		
-		
+			BCF2000.sendControllerChange(control[0],control[1],0);
+			light
+			= lights.get(control[2]); 
 	}
 	
-	public void noteOn(int channel, int pitch, int velocity) {}
-
-	public void noteOff(int channel, int pitch, int velocity) {}
 
 	public void controllerChange(int channel, int number, int value) {
-		int newIndex; 
-		for (int[] l : ls) {
-			if(channel == l[0] && number == l[1])
-			{
-				if(mouseDown != null)
-				{
-					
-					newIndex = lights.indexOf(mouseDown);
-					if(l[2] != newIndex)
-					{
-						lights.get(l[2]).setValue(0);
-						l[2] = newIndex; 
-					}
-
-					mouseDown = null; 
-				}
-
-				lights.get(l[2]).setValue((float)value/BCF2000.MAX);
-				
-			}
+		
+		
+		if(channel == control[0] && number == control[1])
+		{
+			light.setValue((float)value/BCF2000.MAX);
 		}
+		
 		
 	}
 	

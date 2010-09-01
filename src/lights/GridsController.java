@@ -50,7 +50,7 @@ public class GridsController {
 
 	public void noteOff(int channel, int pitch, int velocity) {
 		for (Grid g : grids) {
-			g.noteOn(channel, pitch, velocity); 
+			g.noteOff(channel, pitch, velocity); 
 		}
 	}
 
@@ -80,6 +80,7 @@ public class GridsController {
 		float total =1; 
 		double gamma = 1; 
 		int index ;
+	//	System.out.println(" --------------------------"); 
 		for (int i = 0; i < gridHeight; i++) 
 		{
 			for (int j = 0; j < gridWidth; j++) 
@@ -90,10 +91,14 @@ public class GridsController {
 				
 				gamma = grids.get(0).getGammaByIndex(index); 
 				for (Grid g : grids) { 
-					average += g.getValueByIndex(index)*g.getWeight();
+					average += ((g.isPos())?1:-1)*(g.getValueByIndex(index)*g.getWeight());
 					total += g.getWeight();
 				}	
 				//don't think we need to divide it by the average
+				
+				average = Math.max(0,average); 
+				average = Math.min(1,average); 
+				//System.out.print(average + "\t"); 
 				dmx.setValue((j < ids[i].length )? ids[i][j]: -1, average/*/Math.max(1, total)*/,gamma );
 			}
 		}

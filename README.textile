@@ -20,15 +20,12 @@ h2. Todo:
 * Fix the the export function setup
 * Add a gamma type and allow us to tweak the gamma via midi device 
 * Add a contrast midi control with a range of 1 to -1
-* Set grid out 8 by 8 
-* Add more affects 
 
 h2. More todo:
 
-* The "MIDI" grid I would like to have access to all the lamps, but with only ONE midi-control.
-  My suggestion is that when you move the mouse over the grid, you send the value of the "lamp" you are pointing at to the midi control channel. This way we make sure that the control knob and the lamp is synchronized so the lamp wont jump in brightness when you start turning.  It will allso help you finding the right lamp by viewing the leds on the knob.
-* The grids need a switch that make them subtract in stead of add. This way I can make grid one shut of the lamp I pint at instead of lighting it. The pushbutton over the fader for the grid can be used to select add/sub.
-* On the "Click"-grid: can we give the afterglow time a midi-control? Then we can make the lamps flicker and seem dammaged etc.
+* -The "MIDI" grid I would like to have access to all the lamps, but with only ONE midi-control. My suggestion is that when you move the mouse over the grid, you send the value of the "lamp" you are pointing at to the midi control channel. This way we make sure that the control knob and the lamp is synchronized so the lamp wont jump in brightness when you start turning.  It will allso help you finding the right lamp by viewing the leds on the knob.-
+* -The grids need a switch that make them subtract in stead of add. This way I can make grid one shut of the lamp I pint at instead of lighting it. The pushbutton over the fader for the grid can be used to select add/sub.-
+* -On the "Click"-grid: can we give the afterglow time a midi-control? Then we can make the lamps flicker and seem dammaged etc.-
 * Here is an effect I would like. I had to experiment in Delphi to find out how I wanted it, therfore it is easier for me to just give you the code then to explain how it should look ;-)
 
 The angel can be controled by a rotary knob over the grid-fader. Maybe it is possible to make the program reset the midi-knob to 0 when it hits 127 and vica versa? IF this works we kan turn the wave around forever which would be excelent! I guess we also need a rotary for OFFSET control.
@@ -53,3 +50,22 @@ z=75-180*cos((x-cx)*rate*sin(angle)+(y-cy)*rate*cos(angle)+offset)
 * Maybe some plasma effect? (is that difficult?) 
 * The animation effect you where talking about?
 * Game of Life?
+
+h3. Notes
+
+This looks like a good contrast javascript function that I can use with a slider for an overall contrast. : 
+
+var LOG_POINTFIVE = -0.6931471805599453;
+function gain( a, b) {
+
+var p = Math.log(1. - b) / LOG_POINTFIVE;
+
+  if (a < .001)
+    return 0.;
+  if (a > .999)
+    return 1.;
+  if (a < 0.5)
+    return Math.pow(2 * a, p) / 2;
+  return 1. - Math.pow(2 * (1. - a), p) / 2;
+}
+http://asserttrue.blogspot.com/2010/01/fast-contrast-adjustment-using-perlins.html

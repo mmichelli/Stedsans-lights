@@ -2,6 +2,7 @@ package affects;
 
 import java.util.ArrayList;
 
+import lights.BCF2000;
 import lights.Light;
 
 import processing.core.PApplet;
@@ -13,14 +14,54 @@ public abstract class Affect {
 	protected int gridHeight = 0 ; 
 	protected int midiChannel  ;
 	protected int midiNumber ;
+	protected int[] button = {0,60};
+	protected boolean pos = false;
+	
+	/**
+	 * @return the pos
+	 */
+	public boolean isPos() {
+		return !pos;
+	}
+
+	/**
+	 * @param pos the pos to set
+	 */
+	public void setPos(boolean pos) {
+		this.pos = !pos;
+	}
+
 	protected float weight  ;
 	
 	
+
+
+	public void noteOn(int channel, int pitch, int velocity) {
+		
+		if(channel == button[0] && pitch == button[1] && velocity>0 )
+		{
+			 
+			pos = !pos;
+			
+			
+		}
+		
+		BCF2000.sendNoteOn(button[0], button[1], (pos)?127:0);
+		
+	}
+
+	public void noteOff(int channel, int pitch, int velocity) {
+		
+		System.out.println(channel +"  "+ button[0] +"  "+ pitch +"  "+ button[1]);
+		if(channel == button[0] && pitch == button[1] )
+		{
+			System.out.println("                       Off:  "+pos); 
+			BCF2000.sendNoteOn(button[0], button[1], (pos)?127:0);
+		}
+		
+	}
+
 	
-	public void noteOn(int channel, int pitch, int velocity) {}
-
-	public void noteOff(int channel, int pitch, int velocity) {}
-
 	public void controllerChange(int channel, int number, int value) {
 
 		
@@ -72,6 +113,14 @@ public abstract class Affect {
 		lights = lts;
 		gridWidth  = w ; 
 		gridHeight = h ;
+		
+		
+	}
+	
+	protected void resetButton(int set)
+	{
+		
+		BCF2000.sendNoteOn(button[0], button[1], set);
 	}
 	
 	public void update ( PApplet p,int x, int y){};

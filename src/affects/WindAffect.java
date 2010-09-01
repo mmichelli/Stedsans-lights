@@ -23,8 +23,10 @@ public class WindAffect extends Affect {
 		midiChannel = 3 ;
 		midiNumber 	= 5 ;
 		weight 		= 0 ;
-		
+		button[0] = 9; 
+		button[1] = 41; 
 		affectName = "waves";
+		resetButton(0);
 	}
 	
 	private void setUpStrings(int w, int h) {

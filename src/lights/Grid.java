@@ -79,7 +79,10 @@ public class Grid {
 	{
 		return lights.get(index).getGamma();
 	}
-	
+	public boolean isPos()
+	{
+		return affect.isPos();
+	}	
 	public float getValueByIndex(int index)
 	{
 		return lights.get(index).getValue();
