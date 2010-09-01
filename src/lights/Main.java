@@ -39,8 +39,8 @@ public class Main extends PApplet {
 		gc = new GridsController(DMX.DMX_IDS,nGrids,BCF2000.getInstance(this));
 		
 		
-		font = loadFont("Calibri-13.vlw"); 
-		textFont(font, 13); 
+		//font = loadFont("Calibri-13.vlw"); 
+		//textFont(font, 13); 
 		
 		
 		
@@ -93,13 +93,13 @@ public class Main extends PApplet {
 
 	public void controllerChange(int channel, int number, int value) {
 		// Receive a controllerChange
-	/*	println();
+		println();
 		println("Controller Change:");
 		println("--------");
 		println("Channel:"+channel);
 		println("Number:"+number);
 		println("Value:"+value);
-		*/
+		
 		gc.controllerChange( channel,  number,  value);
 	}
 
