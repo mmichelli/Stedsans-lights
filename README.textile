@@ -26,7 +26,7 @@ h2. Todo:
 * Add a gamma type and allow us to tweak the gamma via midi device 
 * Add a contrast midi control with a range of 1 to -1
 * Other effects that you would like. 
-* Maybe some plasma effect? (is that difficult?), na http://klep.name/programming/processing/plasma/Plasma.pde
+* Maybe some plasma effect? (is that difficult?), "nice excample":http://klep.name/programming/processing/plasma/Plasma.pde
 * The animation effect you where talking about?
 * Game of Life?
 
