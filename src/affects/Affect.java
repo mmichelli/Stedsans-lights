@@ -16,7 +16,7 @@ public abstract class Affect {
 	protected int midiNumber ;
 	protected int[] button = {0,60};
 	protected boolean pos = false;
-	
+	protected float weight  ;
 	/**
 	 * @return the pos
 	 */
@@ -31,7 +31,7 @@ public abstract class Affect {
 		this.pos = !pos;
 	}
 
-	protected float weight  ;
+	
 	
 	
 
@@ -40,10 +40,7 @@ public abstract class Affect {
 		
 		if(channel == button[0] && pitch == button[1] && velocity>0 )
 		{
-			 
 			pos = !pos;
-			
-			
 		}
 		
 		BCF2000.sendNoteOn(button[0], button[1], (pos)?127:0);

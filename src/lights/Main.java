@@ -23,7 +23,7 @@ public class Main extends PApplet {
 	PFont font;
 
 	
-	String[] nGrids = {AffectFactory.MOUSE,AffectFactory.NOISE,AffectFactory.SPRING,AffectFactory.WIND ,AffectFactory.SELECT}; 
+	String[] nGrids = {AffectFactory.MOUSE,AffectFactory.NOISE,AffectFactory.SPRING,AffectFactory.WIND ,AffectFactory.SELECT, AffectFactory.WAVE,AffectFactory.BASE}; 
 	
 	
 	  public static void main(String args[])
@@ -98,7 +98,7 @@ public class Main extends PApplet {
 		println("--------");
 		println("Channel:"+channel);
 		println("Number:"+number);
-		println("Value:"+value);
+		println(" "+value);
 		
 		gc.controllerChange( channel,  number,  value);
 	}

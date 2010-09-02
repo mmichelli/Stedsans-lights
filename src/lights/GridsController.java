@@ -91,7 +91,7 @@ public class GridsController {
 				
 				gamma = grids.get(0).getGammaByIndex(index); 
 				for (Grid g : grids) { 
-					average += ((g.isPos())?1:-1)*(g.getValueByIndex(index)*g.getWeight());
+					average += g.getValueByIndex(index)*g.getWeight();
 					total += g.getWeight();
 				}	
 				//don't think we need to divide it by the average

@@ -11,6 +11,10 @@ import lights.Light;
 		public static final String SPRING = "SpringAffect";
 		public static final String MOUSE = "MouseAffect";
 		public static final String SELECT = "SelectAffect";
+		public static final String WAVE = "WaveAffect";
+		public static final String BASE = "BaseLightAffect";
+		
+		
 
 		public static Affect makeAffect(String name, ArrayList<Light> lights, int gridWidth, int gridHeight ) {
     		
@@ -18,6 +22,14 @@ import lights.Light;
     		{
     			return  new NoiseAffect(lights, gridWidth, gridHeight); 
     		}	
+    		else if(name ==  AffectFactory.WAVE)
+    		{
+    			return new WaveAffect(lights, gridWidth, gridHeight); 
+    		}
+    		else if(name ==  AffectFactory.BASE)
+    		{
+    			return new BaseLightAffect(lights, gridWidth, gridHeight); 
+    		}
     		else if(name ==  AffectFactory.WIND)
     		{
     			return new WindAffect(lights, gridWidth, gridHeight); 

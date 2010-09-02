@@ -83,9 +83,14 @@ import processing.core.PApplet;
 	{
 		return y * (s + g) + _y;
 	}	
-	public void draw( PApplet p, int _x, int _y, float _alpha)
+	public void draw( PApplet p, int _x, int _y, float _alpha, boolean np)
 	{	
-		int f = p.color(value*255,value*255,value*255);
+		float v = value*((np)?1:-1);
+		int f;
+		if(v < 0)
+			 f = p.color(v*-255,0,0);
+		else
+			 f = p.color(v*255,v*255,v*255);
 		p.stroke((int)(Math.max(_alpha, 0.1)*255));
 		p.fill(f);
 		p.rect(getDx(_x), getDy(_y), s, s);

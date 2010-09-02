@@ -13,7 +13,7 @@ public class Grid {
 	ArrayList<Light> lights;
 	private int[][] ids;
 
-	int blockSize = 30; 
+	int blockSize = 25; 
 	int gap  = 0;
 	int gridGap = 50;
 	int gridWidth  = 0;
@@ -85,7 +85,7 @@ public class Grid {
 	}	
 	public float getValueByIndex(int index)
 	{
-		return lights.get(index).getValue();
+		return ((this.isPos())?1:-1)* lights.get(index).getValue();
 	}
 	
 	public float getWeight()
@@ -113,7 +113,7 @@ public class Grid {
 		float a = this.affect.getWeight(); 
 		for (Light l : lights) {
 			
-			l.draw(p, x, y , a); 
+			l.draw(p, x, y , a,this.isPos() ); 
 		}
 		float tx = this.getWidth()/2 -(p.textWidth(affect.affectName)/2) - (gridGap/2);
 		
