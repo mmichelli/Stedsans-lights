@@ -8,20 +8,8 @@ import processing.core.PApplet;
 	protected float value = 0; 
 	private double velocity = 0; 
 	public boolean fixed = false;
-	private double gamma = 0.8; 
-	
-	/**
-	 * @return the gamma
-	 */
-	public double getGamma() {
-		return gamma;
-	}
-	/**
-	 * @param gamma the gamma to set
-	 */
-	public void setGamma(double gamma) {
-		this.gamma = gamma;
-	}
+
+
 	public	Light(int _x, int _y, int _id, int _s, int _g )
 	{
 		x 	= _x;
@@ -29,6 +17,7 @@ import processing.core.PApplet;
 		id 	= _id;
 		s 	= _s;
 		g 	= _g;
+	
 
 	}
 	public	Light( )
@@ -71,6 +60,11 @@ import processing.core.PApplet;
 	{
 		value = v;
 	}
+	public void addValue(float v)
+	{
+		value += v;
+	}
+	
 	public float getValue()
 	{
 		return value;

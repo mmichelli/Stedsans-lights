@@ -17,16 +17,22 @@ OpenDMX is the same as using arduino to talk DMX. "Arduino DMX":http://www.ardui
 
 h2. Todo:
 
-* -The "MIDI" grid I would like to have access to all the lamps, but with only ONE midi-control. My suggestion is that when you move the mouse over the grid, you send the value of the "lamp" you are pointing at to the midi control channel. This way we make sure that the control knob and the lamp is synchronized so the lamp wont jump in brightness when you start turning.  It will allso help you finding the right lamp by viewing the leds on the knob.-
+* -The "MIDI" grid I would like to have access to all the lamps, but with only ONE midi-control. My suggestion is that when you move the mouse over the grid, you send the value of the "lamp" you are pointing at to the midi control channel. This way we make sure that the control knob and the lamp is synchronized so the lamp wont jump in brightness when you start turning.  It will all so help you finding the right lamp by viewing the leds on the knob.-
 * -The grids need a switch that make them subtract in stead of add. This way I can make grid one shut of the lamp I pint at instead of lighting it. The pushbutton over the fader for the grid can be used to select add/sub.-
-* -On the "Click"-grid: can we give the afterglow time a midi-control? Then we can make the lamps flicker and seem dammaged etc.-
-* -Here is an effect I would like. I had to experiment in Delphi to find out how I wanted it, therfore it is easier for me to just give you the code then to explain how it should look ;-)-
+* -On the "Click"-grid: can we give the afterglow time a midi-control? Then we can make the lamps flicker and seem damaged etc.-
+* -Here is an effect I would like. I had to experiment in Delphi to find out how I wanted it, therefore it is easier for me to just give you the code then to explain how it should look ;-)-
 * -A midi control for "background" lightning ranging from +fully on, to fully off in middle position, and down to -fully on (which will turn off all existing light), that can offset the light output.-
 * -Full 8x8 grid. No real hurry but the sooner the better.-
-* Add a gamma type and allow us to tweak the gamma via midi device 
+* -Add a gamma type and allow us to tweak the gamma via midi device-
+* -4 buttons, two for row add or remove, one for swish and one for swoosh.-
+* -flicker button-
+* -noise increase button-
+* -rotate and wave buttons work more exactly- 
+* -leave last lamp on- 
+* -loosen the spring affect-
 * Add a contrast midi control with a range of 1 to -1
 * Other effects that you would like. 
-* Maybe some plasma effect? (is that difficult?), "nice excample":http://klep.name/programming/processing/plasma/Plasma.pde
+* Maybe some plasma effect? (is that difficult?), "nice example":http://klep.name/programming/processing/plasma/Plasma.pde
 * The animation effect you where talking about?
 * Game of Life?
 

@@ -7,9 +7,9 @@ public class Spring {
 	private Light la; 
 	private Light lb;
 	
-	private double Mass = 3.0;
-	private double Stiffness = 0.2;
-	private double Damping = 0.8;
+	private double Mass = 1.5;
+	private double Stiffness = 0.1;
+	private double Damping = 0.85;
 	
 	public Spring( Light _la, Light _lb) {
 		la = _la; 

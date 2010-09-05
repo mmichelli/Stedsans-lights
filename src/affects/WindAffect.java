@@ -25,7 +25,7 @@ public class WindAffect extends Affect {
 		weight 		= 0 ;
 		button[0] = 9; 
 		button[1] = 41; 
-		affectName = "waves";
+		affectName = "Throw";
 		resetButton(0);
 	}
 	
@@ -43,6 +43,7 @@ public class WindAffect extends Affect {
 					
 					springs.add(new Spring(lva,getLightVector(j+1, i)));
 					springs.add(new Spring(lva,getLightVector(j, i+1)));
+					springs.add(new Spring(lva,getLightVector(j-1, i)));
 					springs.add(new Spring(lva,getLightVector(j, i)));
 					
 				

@@ -23,7 +23,14 @@ public class Main extends PApplet {
 	PFont font;
 
 	
-	String[] nGrids = {AffectFactory.MOUSE,AffectFactory.NOISE,AffectFactory.SPRING,AffectFactory.WIND ,AffectFactory.SELECT, AffectFactory.WAVE,AffectFactory.BASE}; 
+	String[] nGrids = {	AffectFactory.MOUSE,
+						AffectFactory.NOISE,
+						AffectFactory.SPRING,
+						AffectFactory.WIND ,
+						AffectFactory.SELECT, 
+						AffectFactory.WAVE,
+						AffectFactory.BASE,
+						AffectFactory.ROW}; 
 	
 	
 	  public static void main(String args[])

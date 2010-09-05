@@ -13,6 +13,8 @@ import lights.Light;
 		public static final String SELECT = "SelectAffect";
 		public static final String WAVE = "WaveAffect";
 		public static final String BASE = "BaseLightAffect";
+		public static final String ROW = "RowOutAffect";
+		
 		
 		
 
@@ -25,6 +27,10 @@ import lights.Light;
     		else if(name ==  AffectFactory.WAVE)
     		{
     			return new WaveAffect(lights, gridWidth, gridHeight); 
+    		}
+    		else if(name ==  AffectFactory.ROW)
+    		{
+    			return new RowOutAffect(lights, gridWidth, gridHeight); 
     		}
     		else if(name ==  AffectFactory.BASE)
     		{

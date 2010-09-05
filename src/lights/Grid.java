@@ -11,9 +11,9 @@ public class Grid {
 	
 	
 	ArrayList<Light> lights;
-	private int[][] ids;
+	private double[][][] ids;
 
-	int blockSize = 25; 
+	int blockSize = 30; 
 	int gap  = 0;
 	int gridGap = 50;
 	int gridWidth  = 0;
@@ -22,8 +22,9 @@ public class Grid {
 	int midiNumber =0 ;
 	Affect affect; 
 	
-	public Grid(int _ids[][], String name, int _gridWidth, int _gridHeight) {
+	public Grid(double _ids[][][], String name, int _gridWidth, int _gridHeight) {
 		ids  		= _ids; 
+	
 		gridWidth  	= _gridWidth; 
 		gridHeight  = _gridHeight; 
 		
@@ -69,16 +70,13 @@ public class Grid {
 		{
 			for (int j = 0; j < gridWidth; j++) 
 			{
-				id = (j < ids[i].length )? ids[i][j]: -1; 
+				id = (j < ids[i].length )? (int)ids[i][j][0]: -1; 
 				lights.add(new Light(j,i, id ,blockSize,gap)); 
 			}
 		}
 	}
 	
-	public double getGammaByIndex(int index)
-	{
-		return lights.get(index).getGamma();
-	}
+
 	public boolean isPos()
 	{
 		return affect.isPos();
@@ -151,6 +149,12 @@ public class Grid {
 	 */
 	public int getHeight() {
 		return ids.length *(blockSize + gap) + gridGap;
+	}
+	
+	public float getClip()
+	{
+		return affect.getClip();
+		
 	}
 
 

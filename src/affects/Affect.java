@@ -12,11 +12,26 @@ public abstract class Affect {
 	protected ArrayList<Light> lights; 
 	protected int gridWidth  = 0 ; 
 	protected int gridHeight = 0 ; 
-	protected int midiChannel  ;
-	protected int midiNumber ;
-	protected int[] button = {0,60};
+	protected int midiChannel = 99 ;
+	protected int midiNumber  = 99;
+	protected int[] button = {99,99};
 	protected boolean pos = false;
 	protected float weight  ;
+	protected float clip = 1  ;
+	/**
+	 * @return the clip
+	 */
+	public float getClip() {
+		return clip;
+	}
+
+	/**
+	 * @param clip the clip to set
+	 */
+	public void setClip(float clip) {
+		this.clip = clip;
+	}
+
 	/**
 	 * @return the pos
 	 */

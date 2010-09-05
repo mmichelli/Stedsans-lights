@@ -10,13 +10,13 @@ public class GridsController {
 	ArrayList<Grid> grids;
 	
 	String[] nGrids ; 
-	int[][] ids;
+	double[][][] ids;
 	DMX dmx; 
 	int gridWidth  = 0;
 	int gridHeight = 0 ;
 	BCF2000 device;
 	
-	public GridsController( int[][] _ids, String[] _nGrids, BCF2000 _device) {
+	public GridsController( double[][][] _ids, String[] _nGrids, BCF2000 _device) {
 		
 	 
 		ids  	= _ids; 
@@ -76,9 +76,8 @@ public class GridsController {
 	private void updateLights()
 	{
 		
-		float average = 0 ;
-		float total =1; 
-		double gamma = 1; 
+		float average  ;
+		float total; 
 		int index ;
 	//	System.out.println(" --------------------------"); 
 		for (int i = 0; i < gridHeight; i++) 
@@ -89,17 +88,20 @@ public class GridsController {
 				average = 0;
 				total = 0;
 				
-				gamma = grids.get(0).getGammaByIndex(index); 
+	
 				for (Grid g : grids) { 
 					average += g.getValueByIndex(index)*g.getWeight();
 					total += g.getWeight();
+					average *= g.getClip(); 
+					
 				}	
 				//don't think we need to divide it by the average
 				
 				average = Math.max(0,average); 
 				average = Math.min(1,average); 
-				//System.out.print(average + "\t"); 
-				dmx.setValue((j < ids[i].length )? ids[i][j]: -1, average/*/Math.max(1, total)*/,gamma );
+				//System.out.print(average + "\t");
+				
+				dmx.setValue((j < ids[i].length )? (int)ids[i][j][0]: -1, average/*/Math.max(1, total)*/,ids[i][j][1] );
 			}
 		}
 		

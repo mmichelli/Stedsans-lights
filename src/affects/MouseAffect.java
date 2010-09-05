@@ -12,6 +12,9 @@ public class MouseAffect extends Affect {
 	
 	private int[] control = {0,6};
 	private double ratio = 0.9; 
+	private int[] flicker = {9,35};
+	boolean flicking = false;
+	
 
 	public MouseAffect(ArrayList<Light> lts, int w, int h) {
 		super(lts, w, h);
@@ -30,17 +33,32 @@ public class MouseAffect extends Affect {
 		for (Light l : lights) {
 			if(p.mousePressed && l.mouseOver(p, x,y))
 			{
-				l.setValue((float)1.0);
-				System.out.println( p.mouseX + "  "+l.getDx(x));
+				l.setValue(1f);
+				System.out.println("index: " + lights.indexOf(l));
 			}
-			else
+			else if(!flicking)
 			{
 				l.setValue((float)(l.getValue()*ratio));
 			}
 		}
 		
 	};
-	
+	public void noteOn(int channel, int pitch, int velocity) {
+		
+		if(channel == flicker[0] && pitch == flicker[1]  )
+		{
+			lights.get(48).setValue(velocity/100);
+			flicking = velocity == 100;
+		}
+		
+
+		if(channel == button[0] && pitch == button[1] && velocity>0 )
+		{
+			pos = !pos;
+		}
+		
+		BCF2000.sendNoteOn(button[0], button[1], (pos)?127:0);
+	}
 
 	public void controllerChange(int channel, int number, int value) {
 		

@@ -33,7 +33,7 @@ public class SelectAffect extends Affect {
 		for (Light l : lights) {
 			if(p.mousePressed && l.mouseOver(p, x,y) && light != l )
 			{
-				light = l;
+				light = l; 
 				BCF2000.sendControllerChange(control[0],control[1],(int)(l.getValue()*BCF2000.MAX));
 			}
 

@@ -12,26 +12,28 @@ public class DMX {
 	private int maxRange = 512; 
 	
 	
-	static final int[][] DMX_IDS =  {{1,2,3,4,5,6,7,8},{9,10,11,12,13,14,15,16},{17,18,19,20,21,22,23,24},{25,26,27,28,29,30,31,32},{33,34,35,36,37,38,39,40},{41,42,43,44,45,46,47,48},{49,50,51,52,53,54,55,56},{57,58,59,60,61,62,63,64}};
+	static final double[][][] DMX_IDS =  {{{0,0.8},{1,0.8},{2,0.8},{3,0.8},{4,0.8},{5,0.8},{6,0.8},{7,0.8}},{{8,0.8},{9,0.8},{10,0.8},{11,0.8},{12,0.8},{13,0.8},{14,0.8},{15,0.8}},{{16,0.8},{17,0.8},{18,0.8},{19,0.8},{20,0.8},{21,0.8},{22,0.8},{23,0.8}},{{24,0.8},{25,0.8},{26,0.8},{27,0.8},{28,0.8},{29,0.8},{30,0.8},{31,0.8}},{{32,0.8},{33,0.8},{34,0.8},{35,0.8},{36,0.8},{37,0.8},{38,0.8},{39,0.8}},{{40,0.8},{41,0.8},{42,0.8},{43,0.8},{44,0.8},{45,0.8},{46,0.8},{47,0.8}},{{48,0.8},{49,0.8},{50,0.8},{51,0.8},{52,0.8},{53,0.8},{54,0.8},{55,0.8}},{{56,0.8},{57,0.8},{58,0.8},{59,0.8},{60,0.8},{61,0.8},{62,0.8},{63,0.8}}};
+	
 	/*  Some javascripe to generate the grid, so that you can generate then tweak
-	 * 	var grid = []; 
+	 * 	
+	  	var grid = []; 
+	  	var gamma = 0.8; 
 		var count = 0; 
 		for (var i = 0; i < 8 ;i++) {
-		    var ng = []; 
+		    var ng = [];
+		    var g = [];  
 			grid.push(ng); 
+		
 			for (var j = 0; j < 8; j++) {
-				count++; 
-				ng[j] = count; 
+				 
+				ng[j] = [count,gamma]; 
+				count++;
 			};
-};
+		};
 
-JSON.stringify(grid).replace(/\[/g,"{").replace(/\]/g,"}");
-	 * 
-	 * 
-	 * 
-	 * 
+		console.log(JSON.stringify(grid).replace(/\[/g,"{").replace(/\]/g,"}"));
+
 	 */
-	//write a function to print this out
 	
 	
     public void stop() {
@@ -45,7 +47,7 @@ JSON.stringify(grid).replace(/\[/g,"{").replace(/\]/g,"}");
 		
 		double corrected=Math.pow(value , gamma); 
 		setValue(id, (int)(corrected*maxValue));
-		//System.out.println(value);
+	
 	}
     public static DMX getInstance() {
 	      if(instance == null) {
