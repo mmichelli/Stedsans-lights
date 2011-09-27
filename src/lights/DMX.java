@@ -46,9 +46,12 @@ public class DMX {
 	public void setValue(int id, float value, double gamma) {
 		
 		double corrected=Math.pow(value , gamma); 
-		setValue(id, (int)(corrected*maxValue));
-	
+		setValue(id, (int)(corrected*maxValue));	
 	}
+	public int getValue(int id) {
+		return OpenDmx.getValue(id);	
+	}
+	
     public static DMX getInstance() {
 	      if(instance == null) {
 	         instance = new DMX();
